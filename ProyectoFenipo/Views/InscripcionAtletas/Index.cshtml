@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ProyectoFenipo.Models.InscripcionAtletas>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PesoCorporal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GLPoint)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Atleta.NombreAtleta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InscripcionEquipo.DelegadoEquipo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Competencia.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoriaEdad.NombreCategoriaEdad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoriaPeso.Genero)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PesoCorporal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GLPoint)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Atleta.NombreAtleta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InscripcionEquipo.DelegadoEquipo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Competencia.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoriaEdad.NombreCategoriaEdad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoriaPeso.Genero)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

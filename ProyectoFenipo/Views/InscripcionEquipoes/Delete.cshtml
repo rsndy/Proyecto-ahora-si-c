@@ -1,0 +1,48 @@
+﻿@model ProyectoFenipo.Models.InscripcionEquipo
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Estas Seguro de borrar a @Model.Equipo.NombreEquipo de @Model.Competencia.Nombre</h3>
+<div>
+    <h4>Equipo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Delegado de Equipo")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DelegadoEquipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Nombre del Equipo")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Equipo.NombreEquipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Nombre de Competencia")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Competencia.Nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger btn-sm" /> |
+            @Html.ActionLink("Regresar a la lista", "ListaEquipos", "Competencias", new { id = Model.CompetenciaId },   new { @class = "btn btn-info btn-sm" })
+        </div>
+    }
+</div>

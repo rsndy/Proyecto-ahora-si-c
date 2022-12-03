@@ -1,0 +1,22 @@
+Planteamiento de la problematica. 
+La FENIPO (Federacion Nicaraguense de Potencia), necesita de un sistema para gestionar las competencias y registros de la mismas. 
+Las competencias que realizan dicha federacion son de powerlifting, 
+el powerlifting consisten en que un competidor realiza tres movimientos: sentadilla press de banca y peso muerto
+, en cada movimiento se realizan 3 intentos de poder completar a 1 repeticion el maximo peso posible, 
+al final de la competencia el atleta hace una puntuacion en la que se suman los intentos mas pesados y validos de los 3 movimientos, consiguiendo
+asi un Total, este total se introduce en una formula junto con el peso corporal que el atleta dio en el pesaje antes de la competencia y asi se consiguen los 
+Gl point que el atleta alcanzo con su desempeño.
+El powerlifting consta de modalidad femenina y masculina, cada modalidad consta de categorias de edad y subcategorias de peso. 
+Los atletas de cada categoria suben mas arriba de la clasificatoria mientras mas gl point hayan conseguido , premiando asi 
+a los 3 atletas con mas gl point de cada categoria.
+
+
+Servicios web
+-Mostrar Lista de competencias
+-Mostrar Clasficiacion de atletas de la competencia
+-Mostrar Equipos Inscritos en las competencias
+-Mostrar lista de atletas inscritos 
+-Mostrar Clasificacion de sentadillas global por categoria de peso 
+-Mostrar Clasificacion de Press de banca global por categoria de peso
+-Mostrar Clasificacion de peso muerto global por categoria de peso 
+-Mostrar Clasificacion de total por cartegoria de peso 

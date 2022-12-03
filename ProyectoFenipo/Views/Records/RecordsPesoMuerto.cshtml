@@ -1,0 +1,137 @@
+﻿@using ProyectoFenipo.Models
+@using ProyectoFenipo.Controllers
+
+@{
+    ViewBag.Title = "Peso Muerto";
+    ProyectoFenipoContainer db = new ProyectoFenipoContainer();
+    List<Intento> Sentadillas = db.Intentos.Where(x => x.StatusMovimiento.Status == "Valido" && x.Movimiento1.Nombre == "Peso Muerto").OrderBy(x => x.KilosMovimiento).ToList();
+    List<InscripcionAtletas> inscripcionAtletas = db.InscripcionAtletasSet.ToList();
+    List<Atleta> atletas = db.Atletas.ToList();
+
+}
+
+
+
+
+
+<h2> Records Varones Peso Muerto </h2>
+
+<table class="table">
+    @foreach (var cat in db.CategoriaPesos.Where(x => x.Genero == "Masculino").OrderBy(x => x.NombreCategoriaPeso))
+    {
+        List<movimiento> movimientosTop = new List<movimiento>();
+        <tr>
+            <th>
+                @if (cat.NombreCategoriaPeso == 120)
+                {
+                    @Html.DisplayName("Categoria +" + cat.NombreCategoriaPeso)
+                }
+                else
+                {
+                    @Html.DisplayName("Categoria " + cat.NombreCategoriaPeso)
+                }
+
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayName("Levantador")
+            </th>
+            <th>
+                @Html.DisplayName("Mejor Peso Muerto")
+            </th>
+        </tr>
+        foreach (var atleta in atletas)
+        {
+
+            if (Sentadillas.Where(x => x.InscripcionAtletas.AtletaId == atleta.Id && x.InscripcionAtletas.CategoriaPesoId == cat.Id).Count() > 0)
+            {
+                movimiento mov = new movimiento();
+
+                mov.nombre = atleta.NombreAtleta.ToString();
+                mov.kilos = Sentadillas.Where(x => x.InscripcionAtletas.AtletaId == atleta.Id && x.InscripcionAtletas.CategoriaPesoId == cat.Id).Select(x => x.KilosMovimiento).Max();
+                movimientosTop.Add(mov);
+            }
+        }
+
+        foreach (var movi in movimientosTop.OrderByDescending(x => x.kilos))
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayName(movi.nombre)
+                </td>
+                <td>
+                    @Html.DisplayName(movi.kilos.ToString())
+
+                </td>
+
+            </tr>
+        }
+
+    }
+
+
+</table>
+
+
+
+<h2> Records Mujeres Peso Muerto</h2>
+<table class="table">
+    @foreach (var cat in db.CategoriaPesos.Where(x => x.Genero == "Femenino").OrderBy(x => x.NombreCategoriaPeso))
+    {
+        List<movimiento> movimientosTop = new List<movimiento>();
+        <tr>
+            <th>
+                @if (cat.NombreCategoriaPeso == 84)
+                {
+                    @Html.DisplayName("Categoria +" + cat.NombreCategoriaPeso)
+                }
+                else
+                {
+                    @Html.DisplayName("Categoria " + cat.NombreCategoriaPeso)
+                }
+
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayName("Levantador")
+            </th>
+            <th>
+                @Html.DisplayName("Mejor Peso Muerto")
+            </th>
+        </tr>
+        foreach (var atleta in atletas)
+        {
+
+            if (Sentadillas.Where(x => x.InscripcionAtletas.AtletaId == atleta.Id && x.InscripcionAtletas.CategoriaPesoId == cat.Id).Count() > 0)
+            {
+                movimiento mov = new movimiento();
+
+                mov.nombre = atleta.NombreAtleta.ToString();
+                mov.kilos = Sentadillas.Where(x => x.InscripcionAtletas.AtletaId == atleta.Id && x.InscripcionAtletas.CategoriaPesoId == cat.Id).Select(x => x.KilosMovimiento).Max();
+                movimientosTop.Add(mov);
+            }
+        }
+
+        foreach (var movi in movimientosTop.OrderByDescending(x => x.kilos))
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayName(movi.nombre)
+                </td>
+                <td>
+                    @Html.DisplayName(movi.kilos.ToString())
+
+                </td>
+
+            </tr>
+        }
+
+    }
+
+
+
+</table>

@@ -1,0 +1,90 @@
+﻿@model ProyectoFenipo.Models.InscripcionAtletas
+
+@{
+    ViewBag.Title = "Borrar";
+}
+
+<h2>Delete</h2>
+
+<h3>Estas Seguro de querer Borrar al Atleta de @Model.Competencia.Nombre</h3>
+<div>
+    <h4>Atleta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PesoCorporal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PesoCorporal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GLPoint)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GLPoint)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Atleta.NombreAtleta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Atleta.NombreAtleta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InscripcionEquipo.DelegadoEquipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InscripcionEquipo.DelegadoEquipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Competencia.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Competencia.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoriaEdad.NombreCategoriaEdad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoriaEdad.NombreCategoriaEdad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoriaPeso.Genero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoriaPeso.Genero)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger btn-sm" /> |
+            @Html.ActionLink("Borrar tiros", "BorrarTiros", "InscripcionAtletas", new { id = Model.Id } , new { @class = "btn btn-dark btn-sm" }) |
+            @Html.ActionLink("Regresar a la Lista de atletas", "ListaAtletas", "Competencias", new { id = Model.CompetenciaId }, new { @class = "btn btn-dark btn-sm" })
+        </div>
+    }
+</div>

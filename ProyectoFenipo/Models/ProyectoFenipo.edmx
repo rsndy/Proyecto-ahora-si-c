@@ -1,0 +1,739 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ProyectoFenipo.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ProyectoFenipoStoreContainer">
+    <EntitySet Name="Atletas" EntityType="ProyectoFenipo.Store.Atletas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Equipos" EntityType="ProyectoFenipo.Store.Equipos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Competencias" EntityType="ProyectoFenipo.Store.Competencias" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="InscripcionEquipos" EntityType="ProyectoFenipo.Store.InscripcionEquipos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="InscripcionAtletasSet" EntityType="ProyectoFenipo.Store.InscripcionAtletasSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CategoriaPesos" EntityType="ProyectoFenipo.Store.CategoriaPesos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CategoriaEdades" EntityType="ProyectoFenipo.Store.CategoriaEdades" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Intentos" EntityType="ProyectoFenipo.Store.Intentos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NumeroIntentos" EntityType="ProyectoFenipo.Store.NumeroIntentos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Movimientos" EntityType="ProyectoFenipo.Store.Movimientos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StatusMovimientoSet" EntityType="ProyectoFenipo.Store.StatusMovimientoSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="AtletaInscripcionAtletas" Association="ProyectoFenipo.Store.AtletaInscripcionAtletas">
+      <End Role="Atleta" EntitySet="Atletas" />
+      <End Role="InscripcionAtletas" EntitySet="InscripcionAtletasSet" />
+    </AssociationSet>
+    <AssociationSet Name="InscripcionAtletasIntento" Association="ProyectoFenipo.Store.InscripcionAtletasIntento">
+      <End Role="InscripcionAtletas" EntitySet="InscripcionAtletasSet" />
+      <End Role="Intento" EntitySet="Intentos" />
+    </AssociationSet>
+    <AssociationSet Name="EquipoInscripcionEquipo" Association="ProyectoFenipo.Store.EquipoInscripcionEquipo">
+      <End Role="Equipo" EntitySet="Equipos" />
+      <End Role="InscripcionEquipo" EntitySet="InscripcionEquipos" />
+    </AssociationSet>
+    <AssociationSet Name="InscripcionAtletasInscripcionEquipo" Association="ProyectoFenipo.Store.InscripcionAtletasInscripcionEquipo">
+      <End Role="InscripcionAtletas" EntitySet="InscripcionAtletasSet" />
+      <End Role="InscripcionEquipo" EntitySet="InscripcionEquipos" />
+    </AssociationSet>
+    <AssociationSet Name="CompetenciaInscripcionEquipo" Association="ProyectoFenipo.Store.CompetenciaInscripcionEquipo">
+      <End Role="Competencia" EntitySet="Competencias" />
+      <End Role="InscripcionEquipo" EntitySet="InscripcionEquipos" />
+    </AssociationSet>
+    <AssociationSet Name="CompetenciaInscripcionAtletas" Association="ProyectoFenipo.Store.CompetenciaInscripcionAtletas">
+      <End Role="Competencia" EntitySet="Competencias" />
+      <End Role="InscripcionAtletas" EntitySet="InscripcionAtletasSet" />
+    </AssociationSet>
+    <AssociationSet Name="InscripcionAtletasCategoriaEdad" Association="ProyectoFenipo.Store.InscripcionAtletasCategoriaEdad">
+      <End Role="InscripcionAtletas" EntitySet="InscripcionAtletasSet" />
+      <End Role="CategoriaEdad" EntitySet="CategoriaEdades" />
+    </AssociationSet>
+    <AssociationSet Name="InscripcionAtletasCategoriaPeso" Association="ProyectoFenipo.Store.InscripcionAtletasCategoriaPeso">
+      <End Role="InscripcionAtletas" EntitySet="InscripcionAtletasSet" />
+      <End Role="CategoriaPeso" EntitySet="CategoriaPesos" />
+    </AssociationSet>
+    <AssociationSet Name="IntentoMovimiento" Association="ProyectoFenipo.Store.IntentoMovimiento">
+      <End Role="Intento" EntitySet="Intentos" />
+      <End Role="Movimiento" EntitySet="Movimientos" />
+    </AssociationSet>
+    <AssociationSet Name="NumeroIntentoIntento" Association="ProyectoFenipo.Store.NumeroIntentoIntento">
+      <End Role="NumeroIntento" EntitySet="NumeroIntentos" />
+      <End Role="Intento" EntitySet="Intentos" />
+    </AssociationSet>
+    <AssociationSet Name="IntentoStatusMovimiento" Association="ProyectoFenipo.Store.IntentoStatusMovimiento">
+      <End Role="Intento" EntitySet="Intentos" />
+      <End Role="StatusMovimiento" EntitySet="StatusMovimientoSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Atletas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreAtleta" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FechaNacimiento" Type="datetime" Nullable="false" />
+    <Property Name="Sexo" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Equipos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreEquipo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NacionalidadEquipo" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Competencias">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Lugar" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InscripcionEquipos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EquipoId" Type="int" Nullable="false" />
+    <Property Name="DelegadoEquipo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CompetenciaId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InscripcionAtletasSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AtletaId" Type="int" Nullable="false" />
+    <Property Name="InscripcionEquipoId" Type="int" Nullable="false" />
+    <Property Name="CompetenciaId" Type="int" Nullable="false" />
+    <Property Name="CategoriaEdadId" Type="int" Nullable="false" />
+    <Property Name="CategoriaPesoId" Type="int" Nullable="false" />
+    <Property Name="PesoCorporal" Type="float" Nullable="false" />
+    <Property Name="Total" Type="float" Nullable="false" />
+    <Property Name="GLPoint" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CategoriaPesos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreCategoriaPeso" Type="int" Nullable="false" />
+    <Property Name="Genero" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CategoriaEdades">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreCategoriaEdad" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Intentos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InscripcionAtletasId" Type="int" Nullable="false" />
+    <Property Name="KilosMovimiento" Type="decimal" Nullable="false" />
+    <Property Name="MovimientoId" Type="int" Nullable="false" />
+    <Property Name="NumeroIntentoId" Type="int" Nullable="false" />
+    <Property Name="StatusMovimientoId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NumeroIntentos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Numero" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Movimientos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StatusMovimientoSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="AtletaInscripcionAtletas">
+    <End Role="Atleta" Type="ProyectoFenipo.Store.Atletas" Multiplicity="1" />
+    <End Role="InscripcionAtletas" Type="ProyectoFenipo.Store.InscripcionAtletasSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Atleta">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InscripcionAtletas">
+        <PropertyRef Name="AtletaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="InscripcionAtletasIntento">
+    <End Role="InscripcionAtletas" Type="ProyectoFenipo.Store.InscripcionAtletasSet" Multiplicity="1" />
+    <End Role="Intento" Type="ProyectoFenipo.Store.Intentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InscripcionAtletas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Intento">
+        <PropertyRef Name="InscripcionAtletasId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EquipoInscripcionEquipo">
+    <End Role="Equipo" Type="ProyectoFenipo.Store.Equipos" Multiplicity="1" />
+    <End Role="InscripcionEquipo" Type="ProyectoFenipo.Store.InscripcionEquipos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InscripcionEquipo">
+        <PropertyRef Name="EquipoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="InscripcionAtletasInscripcionEquipo">
+    <End Role="InscripcionAtletas" Type="ProyectoFenipo.Store.InscripcionAtletasSet" Multiplicity="*" />
+    <End Role="InscripcionEquipo" Type="ProyectoFenipo.Store.InscripcionEquipos" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="InscripcionEquipo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InscripcionAtletas">
+        <PropertyRef Name="InscripcionEquipoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CompetenciaInscripcionEquipo">
+    <End Role="Competencia" Type="ProyectoFenipo.Store.Competencias" Multiplicity="1" />
+    <End Role="InscripcionEquipo" Type="ProyectoFenipo.Store.InscripcionEquipos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Competencia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InscripcionEquipo">
+        <PropertyRef Name="CompetenciaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CompetenciaInscripcionAtletas">
+    <End Role="Competencia" Type="ProyectoFenipo.Store.Competencias" Multiplicity="1" />
+    <End Role="InscripcionAtletas" Type="ProyectoFenipo.Store.InscripcionAtletasSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Competencia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InscripcionAtletas">
+        <PropertyRef Name="CompetenciaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="InscripcionAtletasCategoriaEdad">
+    <End Role="InscripcionAtletas" Type="ProyectoFenipo.Store.InscripcionAtletasSet" Multiplicity="*" />
+    <End Role="CategoriaEdad" Type="ProyectoFenipo.Store.CategoriaEdades" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="CategoriaEdad">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InscripcionAtletas">
+        <PropertyRef Name="CategoriaEdadId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="InscripcionAtletasCategoriaPeso">
+    <End Role="InscripcionAtletas" Type="ProyectoFenipo.Store.InscripcionAtletasSet" Multiplicity="*" />
+    <End Role="CategoriaPeso" Type="ProyectoFenipo.Store.CategoriaPesos" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="CategoriaPeso">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InscripcionAtletas">
+        <PropertyRef Name="CategoriaPesoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="IntentoMovimiento">
+    <End Role="Intento" Type="ProyectoFenipo.Store.Intentos" Multiplicity="*" />
+    <End Role="Movimiento" Type="ProyectoFenipo.Store.Movimientos" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Movimiento">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Intento">
+        <PropertyRef Name="MovimientoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NumeroIntentoIntento">
+    <End Role="NumeroIntento" Type="ProyectoFenipo.Store.NumeroIntentos" Multiplicity="1" />
+    <End Role="Intento" Type="ProyectoFenipo.Store.Intentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NumeroIntento">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Intento">
+        <PropertyRef Name="NumeroIntentoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="IntentoStatusMovimiento">
+    <End Role="Intento" Type="ProyectoFenipo.Store.Intentos" Multiplicity="*" />
+    <End Role="StatusMovimiento" Type="ProyectoFenipo.Store.StatusMovimientoSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="StatusMovimiento">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Intento">
+        <PropertyRef Name="StatusMovimientoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ProyectoFenipo" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ProyectoFenipoContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Atletas" EntityType="ProyectoFenipo.Atleta" />
+          <EntitySet Name="Equipos" EntityType="ProyectoFenipo.Equipo" />
+          <EntitySet Name="Competencias" EntityType="ProyectoFenipo.Competencia" />
+          <EntitySet Name="InscripcionEquipos" EntityType="ProyectoFenipo.InscripcionEquipo" />
+          <EntitySet Name="InscripcionAtletasSet" EntityType="ProyectoFenipo.InscripcionAtletas" />
+          <EntitySet Name="CategoriaPesos" EntityType="ProyectoFenipo.CategoriaPeso" />
+          <EntitySet Name="CategoriaEdades" EntityType="ProyectoFenipo.CategoriaEdad" />
+          <EntitySet Name="Intentos" EntityType="ProyectoFenipo.Intento" />
+          <AssociationSet Name="AtletaInscripcionAtletas" Association="ProyectoFenipo.AtletaInscripcionAtletas">
+            <End Role="Atleta" EntitySet="Atletas" />
+            <End Role="InscripcionAtletas" EntitySet="InscripcionAtletasSet" />
+          </AssociationSet>
+          <AssociationSet Name="InscripcionAtletasIntento" Association="ProyectoFenipo.InscripcionAtletasIntento">
+            <End EntitySet="InscripcionAtletasSet" Role="InscripcionAtletas" />
+            <End EntitySet="Intentos" Role="Intento" />
+          </AssociationSet>
+          <AssociationSet Name="EquipoInscripcionEquipo" Association="ProyectoFenipo.EquipoInscripcionEquipo">
+            <End Role="Equipo" EntitySet="Equipos" />
+            <End Role="InscripcionEquipo" EntitySet="InscripcionEquipos" />
+          </AssociationSet>
+          <AssociationSet Name="InscripcionAtletasInscripcionEquipo" Association="ProyectoFenipo.InscripcionAtletasInscripcionEquipo">
+            <End Role="InscripcionAtletas" EntitySet="InscripcionAtletasSet" />
+            <End Role="InscripcionEquipo" EntitySet="InscripcionEquipos" />
+          </AssociationSet>
+          <AssociationSet Name="CompetenciaInscripcionEquipo" Association="ProyectoFenipo.CompetenciaInscripcionEquipo">
+            <End Role="Competencia" EntitySet="Competencias" />
+            <End Role="InscripcionEquipo" EntitySet="InscripcionEquipos" />
+          </AssociationSet>
+          <AssociationSet Name="CompetenciaInscripcionAtletas" Association="ProyectoFenipo.CompetenciaInscripcionAtletas">
+            <End Role="Competencia" EntitySet="Competencias" />
+            <End Role="InscripcionAtletas" EntitySet="InscripcionAtletasSet" />
+          </AssociationSet>
+          <AssociationSet Name="InscripcionAtletasCategoriaEdad" Association="ProyectoFenipo.InscripcionAtletasCategoriaEdad">
+            <End Role="InscripcionAtletas" EntitySet="InscripcionAtletasSet" />
+            <End Role="CategoriaEdad" EntitySet="CategoriaEdades" />
+          </AssociationSet>
+          <AssociationSet Name="InscripcionAtletasCategoriaPeso" Association="ProyectoFenipo.InscripcionAtletasCategoriaPeso">
+            <End Role="InscripcionAtletas" EntitySet="InscripcionAtletasSet" />
+            <End Role="CategoriaPeso" EntitySet="CategoriaPesos" />
+          </AssociationSet>
+          <EntitySet Name="NumeroIntentos" EntityType="ProyectoFenipo.NumeroIntento" />
+          <EntitySet Name="Movimientos" EntityType="ProyectoFenipo.Movimiento" />
+          <EntitySet Name="StatusMovimientoSet" EntityType="ProyectoFenipo.StatusMovimiento" />
+          <AssociationSet Name="IntentoMovimiento" Association="ProyectoFenipo.IntentoMovimiento">
+            <End EntitySet="Intentos" Role="Intento" />
+            <End EntitySet="Movimientos" Role="Movimiento" />
+          </AssociationSet>
+          <AssociationSet Name="NumeroIntentoIntento" Association="ProyectoFenipo.NumeroIntentoIntento">
+            <End EntitySet="NumeroIntentos" Role="NumeroIntento" />
+            <End EntitySet="Intentos" Role="Intento" />
+          </AssociationSet>
+          <AssociationSet Name="IntentoStatusMovimiento" Association="ProyectoFenipo.IntentoStatusMovimiento">
+            <End EntitySet="Intentos" Role="Intento" />
+            <End EntitySet="StatusMovimientoSet" Role="StatusMovimiento" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Atleta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreAtleta" Type="String" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" />
+          <Property Name="Sexo" Type="String" Nullable="false" />
+          <NavigationProperty Name="InscripcionAtletas" Relationship="ProyectoFenipo.AtletaInscripcionAtletas" FromRole="Atleta" ToRole="InscripcionAtletas" />
+        </EntityType>
+        <EntityType Name="Equipo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreEquipo" Type="String" Nullable="false" />
+          <Property Name="NacionalidadEquipo" Type="String" Nullable="false" />
+          <NavigationProperty Name="InscripcionEquipo" Relationship="ProyectoFenipo.EquipoInscripcionEquipo" FromRole="Equipo" ToRole="InscripcionEquipo" />
+        </EntityType>
+        <EntityType Name="Competencia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <Property Name="Lugar" Type="String" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="InscripcionEquipo" Relationship="ProyectoFenipo.CompetenciaInscripcionEquipo" FromRole="Competencia" ToRole="InscripcionEquipo" />
+          <NavigationProperty Name="InscripcionAtletas" Relationship="ProyectoFenipo.CompetenciaInscripcionAtletas" FromRole="Competencia" ToRole="InscripcionAtletas" />
+        </EntityType>
+        <EntityType Name="InscripcionEquipo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EquipoId" Type="Int32" Nullable="false" />
+          <Property Name="DelegadoEquipo" Type="String" Nullable="false" />
+          <NavigationProperty Name="Equipo" Relationship="ProyectoFenipo.EquipoInscripcionEquipo" FromRole="InscripcionEquipo" ToRole="Equipo" />
+          <NavigationProperty Name="InscripcionAtletas" Relationship="ProyectoFenipo.InscripcionAtletasInscripcionEquipo" FromRole="InscripcionEquipo" ToRole="InscripcionAtletas" />
+          <NavigationProperty Name="Competencia" Relationship="ProyectoFenipo.CompetenciaInscripcionEquipo" FromRole="InscripcionEquipo" ToRole="Competencia" />
+          <Property Name="CompetenciaId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InscripcionAtletas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Atleta" Relationship="ProyectoFenipo.AtletaInscripcionAtletas" FromRole="InscripcionAtletas" ToRole="Atleta" />
+          <Property Name="AtletaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Intento" Relationship="ProyectoFenipo.InscripcionAtletasIntento" FromRole="InscripcionAtletas" ToRole="Intento" />
+          <NavigationProperty Name="InscripcionEquipo" Relationship="ProyectoFenipo.InscripcionAtletasInscripcionEquipo" FromRole="InscripcionAtletas" ToRole="InscripcionEquipo" />
+          <Property Name="InscripcionEquipoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Competencia" Relationship="ProyectoFenipo.CompetenciaInscripcionAtletas" FromRole="InscripcionAtletas" ToRole="Competencia" />
+          <Property Name="CompetenciaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CategoriaEdad" Relationship="ProyectoFenipo.InscripcionAtletasCategoriaEdad" FromRole="InscripcionAtletas" ToRole="CategoriaEdad" />
+          <Property Name="CategoriaEdadId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CategoriaPeso" Relationship="ProyectoFenipo.InscripcionAtletasCategoriaPeso" FromRole="InscripcionAtletas" ToRole="CategoriaPeso" />
+          <Property Name="CategoriaPesoId" Type="Int32" Nullable="false" />
+          <Property Name="PesoCorporal" Type="Double" Nullable="false" />
+          <Property Name="Total" Type="Double" Nullable="false" />
+          <Property Name="GLPoint" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CategoriaPeso">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreCategoriaPeso" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="InscripcionAtletas" Relationship="ProyectoFenipo.InscripcionAtletasCategoriaPeso" FromRole="CategoriaPeso" ToRole="InscripcionAtletas" />
+          <Property Name="Genero" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CategoriaEdad">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="NombreCategoriaEdad" Nullable="false" Type="String" />
+          <NavigationProperty Name="InscripcionAtletas" Relationship="ProyectoFenipo.InscripcionAtletasCategoriaEdad" FromRole="CategoriaEdad" ToRole="InscripcionAtletas" />
+        </EntityType>
+        <EntityType Name="Intento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="InscripcionAtletasId" Nullable="false" Type="Int32" />
+          <Property Name="KilosMovimiento" Nullable="false" Type="Decimal" />
+          <NavigationProperty Name="InscripcionAtletas" Relationship="ProyectoFenipo.InscripcionAtletasIntento" FromRole="Intento" ToRole="InscripcionAtletas" />
+          <NavigationProperty Name="Movimiento1" Relationship="ProyectoFenipo.IntentoMovimiento" FromRole="Intento" ToRole="Movimiento" />
+          <Property Name="MovimientoId" Nullable="false" Type="Int32" />
+          <NavigationProperty Name="NumeroIntento1" Relationship="ProyectoFenipo.NumeroIntentoIntento" FromRole="Intento" ToRole="NumeroIntento" />
+          <Property Name="NumeroIntentoId" Nullable="false" Type="Int32" />
+          <NavigationProperty Name="StatusMovimiento" Relationship="ProyectoFenipo.IntentoStatusMovimiento" FromRole="Intento" ToRole="StatusMovimiento" />
+          <Property Name="StatusMovimientoId" Nullable="false" Type="Int32" />
+        </EntityType>
+        <Association Name="AtletaInscripcionAtletas">
+          <End Type="ProyectoFenipo.Atleta" Role="Atleta" Multiplicity="1" />
+          <End Type="ProyectoFenipo.InscripcionAtletas" Role="InscripcionAtletas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Atleta">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InscripcionAtletas">
+              <PropertyRef Name="AtletaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="InscripcionAtletasIntento">
+          <End Type="ProyectoFenipo.InscripcionAtletas" Multiplicity="1" Role="InscripcionAtletas" />
+          <End Type="ProyectoFenipo.Intento" Multiplicity="*" Role="Intento" />
+          <ReferentialConstraint>
+            <Principal Role="InscripcionAtletas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Intento">
+              <PropertyRef Name="InscripcionAtletasId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EquipoInscripcionEquipo">
+          <End Type="ProyectoFenipo.Equipo" Role="Equipo" Multiplicity="1" />
+          <End Type="ProyectoFenipo.InscripcionEquipo" Role="InscripcionEquipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InscripcionEquipo">
+              <PropertyRef Name="EquipoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="InscripcionAtletasInscripcionEquipo">
+          <End Type="ProyectoFenipo.InscripcionAtletas" Role="InscripcionAtletas" Multiplicity="*" />
+          <End Type="ProyectoFenipo.InscripcionEquipo" Role="InscripcionEquipo" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="InscripcionEquipo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InscripcionAtletas">
+              <PropertyRef Name="InscripcionEquipoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CompetenciaInscripcionEquipo">
+          <End Type="ProyectoFenipo.Competencia" Role="Competencia" Multiplicity="1" />
+          <End Type="ProyectoFenipo.InscripcionEquipo" Role="InscripcionEquipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competencia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InscripcionEquipo">
+              <PropertyRef Name="CompetenciaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CompetenciaInscripcionAtletas">
+          <End Type="ProyectoFenipo.Competencia" Role="Competencia" Multiplicity="1" />
+          <End Type="ProyectoFenipo.InscripcionAtletas" Role="InscripcionAtletas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competencia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InscripcionAtletas">
+              <PropertyRef Name="CompetenciaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="InscripcionAtletasCategoriaEdad">
+          <End Type="ProyectoFenipo.InscripcionAtletas" Role="InscripcionAtletas" Multiplicity="*" />
+          <End Type="ProyectoFenipo.CategoriaEdad" Role="CategoriaEdad" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriaEdad">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InscripcionAtletas">
+              <PropertyRef Name="CategoriaEdadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="InscripcionAtletasCategoriaPeso">
+          <End Type="ProyectoFenipo.InscripcionAtletas" Role="InscripcionAtletas" Multiplicity="*" />
+          <End Type="ProyectoFenipo.CategoriaPeso" Role="CategoriaPeso" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriaPeso">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InscripcionAtletas">
+              <PropertyRef Name="CategoriaPesoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="NumeroIntento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Numero" Nullable="false" Type="String" />
+          <NavigationProperty Name="Intento" Relationship="ProyectoFenipo.NumeroIntentoIntento" FromRole="NumeroIntento" ToRole="Intento" />
+        </EntityType>
+        <EntityType Name="Movimiento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Nombre" Nullable="false" Type="String" />
+          <NavigationProperty Name="Intento" Relationship="ProyectoFenipo.IntentoMovimiento" FromRole="Movimiento" ToRole="Intento" />
+        </EntityType>
+        <EntityType Name="StatusMovimiento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Status" Nullable="false" Type="String" />
+          <NavigationProperty Name="Intento" Relationship="ProyectoFenipo.IntentoStatusMovimiento" FromRole="StatusMovimiento" ToRole="Intento" />
+        </EntityType>
+        <Association Name="IntentoMovimiento">
+          <End Type="ProyectoFenipo.Intento" Multiplicity="*" Role="Intento" />
+          <End Type="ProyectoFenipo.Movimiento" Multiplicity="1" Role="Movimiento" />
+          <ReferentialConstraint>
+            <Principal Role="Movimiento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Intento">
+              <PropertyRef Name="MovimientoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="NumeroIntentoIntento">
+          <End Type="ProyectoFenipo.NumeroIntento" Multiplicity="1" Role="NumeroIntento" />
+          <End Type="ProyectoFenipo.Intento" Multiplicity="*" Role="Intento" />
+          <ReferentialConstraint>
+            <Principal Role="NumeroIntento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Intento">
+              <PropertyRef Name="NumeroIntentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="IntentoStatusMovimiento">
+          <End Type="ProyectoFenipo.Intento" Multiplicity="*" Role="Intento" />
+          <End Type="ProyectoFenipo.StatusMovimiento" Multiplicity="1" Role="StatusMovimiento" />
+          <ReferentialConstraint>
+            <Principal Role="StatusMovimiento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Intento">
+              <PropertyRef Name="StatusMovimientoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProyectoFenipoStoreContainer" CdmEntityContainer="ProyectoFenipoContainer">
+    <EntitySetMapping Name="Atletas">
+      <EntityTypeMapping TypeName="IsTypeOf(ProyectoFenipo.Atleta)">
+        <MappingFragment StoreEntitySet="Atletas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NombreAtleta" ColumnName="NombreAtleta" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Equipos">
+      <EntityTypeMapping TypeName="IsTypeOf(ProyectoFenipo.Equipo)">
+        <MappingFragment StoreEntitySet="Equipos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NombreEquipo" ColumnName="NombreEquipo" />
+          <ScalarProperty Name="NacionalidadEquipo" ColumnName="NacionalidadEquipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Competencias">
+      <EntityTypeMapping TypeName="IsTypeOf(ProyectoFenipo.Competencia)">
+        <MappingFragment StoreEntitySet="Competencias">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Lugar" ColumnName="Lugar" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InscripcionEquipos">
+      <EntityTypeMapping TypeName="IsTypeOf(ProyectoFenipo.InscripcionEquipo)">
+        <MappingFragment StoreEntitySet="InscripcionEquipos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EquipoId" ColumnName="EquipoId" />
+          <ScalarProperty Name="DelegadoEquipo" ColumnName="DelegadoEquipo" />
+          <ScalarProperty Name="CompetenciaId" ColumnName="CompetenciaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InscripcionAtletasSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ProyectoFenipo.InscripcionAtletas)">
+        <MappingFragment StoreEntitySet="InscripcionAtletasSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AtletaId" ColumnName="AtletaId" />
+          <ScalarProperty Name="InscripcionEquipoId" ColumnName="InscripcionEquipoId" />
+          <ScalarProperty Name="CompetenciaId" ColumnName="CompetenciaId" />
+          <ScalarProperty Name="CategoriaEdadId" ColumnName="CategoriaEdadId" />
+          <ScalarProperty Name="CategoriaPesoId" ColumnName="CategoriaPesoId" />
+          <ScalarProperty Name="PesoCorporal" ColumnName="PesoCorporal" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="GLPoint" ColumnName="GLPoint" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CategoriaPesos">
+      <EntityTypeMapping TypeName="IsTypeOf(ProyectoFenipo.CategoriaPeso)">
+        <MappingFragment StoreEntitySet="CategoriaPesos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NombreCategoriaPeso" ColumnName="NombreCategoriaPeso" />
+          <ScalarProperty Name="Genero" ColumnName="Genero" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CategoriaEdades">
+      <EntityTypeMapping TypeName="IsTypeOf(ProyectoFenipo.CategoriaEdad)">
+        <MappingFragment StoreEntitySet="CategoriaEdades">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NombreCategoriaEdad" ColumnName="NombreCategoriaEdad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Intentos">
+      <EntityTypeMapping TypeName="IsTypeOf(ProyectoFenipo.Intento)">
+        <MappingFragment StoreEntitySet="Intentos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="InscripcionAtletasId" ColumnName="InscripcionAtletasId" />
+          <ScalarProperty Name="KilosMovimiento" ColumnName="KilosMovimiento" />
+          <ScalarProperty Name="MovimientoId" ColumnName="MovimientoId" />
+          <ScalarProperty Name="NumeroIntentoId" ColumnName="NumeroIntentoId" />
+          <ScalarProperty Name="StatusMovimientoId" ColumnName="StatusMovimientoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NumeroIntentos">
+      <EntityTypeMapping TypeName="IsTypeOf(ProyectoFenipo.NumeroIntento)">
+        <MappingFragment StoreEntitySet="NumeroIntentos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Movimientos">
+      <EntityTypeMapping TypeName="IsTypeOf(ProyectoFenipo.Movimiento)">
+        <MappingFragment StoreEntitySet="Movimientos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StatusMovimientoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ProyectoFenipo.StatusMovimiento)">
+        <MappingFragment StoreEntitySet="StatusMovimientoSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
