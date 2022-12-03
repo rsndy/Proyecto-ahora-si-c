@@ -1,0 +1,64 @@
+﻿@model ProyectoFenipo.Models.Intento
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Intento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.KilosMovimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KilosMovimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InscripcionAtletas.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InscripcionAtletas.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Movimiento1.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Movimiento1.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroIntento1.Numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroIntento1.Numero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusMovimiento.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatusMovimiento.Status)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

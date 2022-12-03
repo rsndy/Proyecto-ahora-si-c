@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProyectoFenipoStoreContainer" CdmEntityContainer="ProyectoFenipoContainer">
+    <EntitySetMapping Name="Atletas">
+      <EntityTypeMapping TypeName="IsTypeOf(ProyectoFenipo.Atleta)">
+        <MappingFragment StoreEntitySet="Atletas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NombreAtleta" ColumnName="NombreAtleta" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Equipos">
+      <EntityTypeMapping TypeName="IsTypeOf(ProyectoFenipo.Equipo)">
+        <MappingFragment StoreEntitySet="Equipos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NombreEquipo" ColumnName="NombreEquipo" />
+          <ScalarProperty Name="NacionalidadEquipo" ColumnName="NacionalidadEquipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Competencias">
+      <EntityTypeMapping TypeName="IsTypeOf(ProyectoFenipo.Competencia)">
+        <MappingFragment StoreEntitySet="Competencias">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Lugar" ColumnName="Lugar" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InscripcionEquipos">
+      <EntityTypeMapping TypeName="IsTypeOf(ProyectoFenipo.InscripcionEquipo)">
+        <MappingFragment StoreEntitySet="InscripcionEquipos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EquipoId" ColumnName="EquipoId" />
+          <ScalarProperty Name="DelegadoEquipo" ColumnName="DelegadoEquipo" />
+          <ScalarProperty Name="CompetenciaId" ColumnName="CompetenciaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InscripcionAtletasSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ProyectoFenipo.InscripcionAtletas)">
+        <MappingFragment StoreEntitySet="InscripcionAtletasSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AtletaId" ColumnName="AtletaId" />
+          <ScalarProperty Name="InscripcionEquipoId" ColumnName="InscripcionEquipoId" />
+          <ScalarProperty Name="CompetenciaId" ColumnName="CompetenciaId" />
+          <ScalarProperty Name="CategoriaEdadId" ColumnName="CategoriaEdadId" />
+          <ScalarProperty Name="CategoriaPesoId" ColumnName="CategoriaPesoId" />
+          <ScalarProperty Name="PesoCorporal" ColumnName="PesoCorporal" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="GLPoint" ColumnName="GLPoint" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CategoriaPesos">
+      <EntityTypeMapping TypeName="IsTypeOf(ProyectoFenipo.CategoriaPeso)">
+        <MappingFragment StoreEntitySet="CategoriaPesos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NombreCategoriaPeso" ColumnName="NombreCategoriaPeso" />
+          <ScalarProperty Name="Genero" ColumnName="Genero" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CategoriaEdades">
+      <EntityTypeMapping TypeName="IsTypeOf(ProyectoFenipo.CategoriaEdad)">
+        <MappingFragment StoreEntitySet="CategoriaEdades">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NombreCategoriaEdad" ColumnName="NombreCategoriaEdad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Intentos">
+      <EntityTypeMapping TypeName="IsTypeOf(ProyectoFenipo.Intento)">
+        <MappingFragment StoreEntitySet="Intentos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="InscripcionAtletasId" ColumnName="InscripcionAtletasId" />
+          <ScalarProperty Name="KilosMovimiento" ColumnName="KilosMovimiento" />
+          <ScalarProperty Name="MovimientoId" ColumnName="MovimientoId" />
+          <ScalarProperty Name="NumeroIntentoId" ColumnName="NumeroIntentoId" />
+          <ScalarProperty Name="StatusMovimientoId" ColumnName="StatusMovimientoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NumeroIntentos">
+      <EntityTypeMapping TypeName="IsTypeOf(ProyectoFenipo.NumeroIntento)">
+        <MappingFragment StoreEntitySet="NumeroIntentos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Movimientos">
+      <EntityTypeMapping TypeName="IsTypeOf(ProyectoFenipo.Movimiento)">
+        <MappingFragment StoreEntitySet="Movimientos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StatusMovimientoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ProyectoFenipo.StatusMovimiento)">
+        <MappingFragment StoreEntitySet="StatusMovimientoSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

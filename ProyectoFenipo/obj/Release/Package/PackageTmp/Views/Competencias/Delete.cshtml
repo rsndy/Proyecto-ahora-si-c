@@ -1,0 +1,53 @@
+﻿@model ProyectoFenipo.Models.Competencia
+
+@{
+    ViewBag.Title = "Borrar Competencia";
+}
+
+<h2>Eliminar Competencia</h2>
+
+<h3>Estas Seguro que quiere eliminar la competencia @Model.Nombre </h3>
+<div>
+    <h4>Competencia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lugar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lugar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <br />
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger btn-sm" /> 
+
+
+        </div>
+        <br />
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-dark btn-sm" })
+    }
+</div>

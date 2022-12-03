@@ -1,0 +1,59 @@
+﻿@model ProyectoFenipo.Models.InscripcionEquipo
+@using ProyectoFenipo.Models
+@{
+    ProyectoFenipoContainer db = new ProyectoFenipoContainer();
+    ViewBag.Title = "Create";
+    int id = int.Parse(Request["id"]);
+
+}
+
+<h2>Agregar Equipo en @db.Competencias.Where(x => x.Id == id).Select(x => x.Nombre).FirstOrDefault() </h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>InscripcionEquipo</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EquipoId, "EquipoId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("EquipoId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EquipoId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DelegadoEquipo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DelegadoEquipo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DelegadoEquipo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CompetenciaId, new { htmlAttributes = new { @class = "form-control", @Value = id, @readonly = true, @type = "Hidden" } })
+                @Html.ValidationMessageFor(model => model.CompetenciaId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-success btn-sm" />
+            </div>
+        </div>
+    </div>
+}
+<br />
+<div>
+    @Html.ActionLink("Regresar A Lista de Equipos", "ListaEquipos" , "Competencias", new { id= id } , new { @class = "btn btn-dark btn-sm" })
+</div>
+<br />
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

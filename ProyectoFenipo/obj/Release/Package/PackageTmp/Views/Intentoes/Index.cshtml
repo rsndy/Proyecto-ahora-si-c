@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ProyectoFenipo.Models.Intento>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.KilosMovimiento)
+        </th>
+        <th>
+            @Html.DisplayName("Atleta")
+        </th>
+        <th>
+            @Html.DisplayName("Movimiento")
+        </th>
+        <th>
+            @Html.DisplayName("Intentos")
+        </th>
+        <th>
+            @Html.DisplayName("Estatus del intento")
+        </th>
+        <th>
+            @Html.DisplayName("Competencia")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.KilosMovimiento)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.InscripcionAtletas.Atleta.NombreAtleta)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Movimiento1.Nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NumeroIntento1.Numero)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StatusMovimiento.Status)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.InscripcionAtletas.Competencia.Nombre)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+    </td>
+</tr>
+}
+
+</table>

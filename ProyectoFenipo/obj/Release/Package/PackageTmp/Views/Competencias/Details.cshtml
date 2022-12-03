@@ -1,0 +1,45 @@
+﻿@model ProyectoFenipo.Models.Competencia
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles de la Competencia @Model.Nombre</h2>
+
+<div>
+    <h4>Competencia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lugar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lugar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-secondary btn-sm" }) |
+    @Html.ActionLink("Regresar A Lista", "Index" , null , new { @class = "btn btn-dark btn-sm" }) |
+    @Html.ActionLink("Lista De atletas", "ListaAtletas", new { id = Model.Id }, new { @type = "button", @class = "btn btn-primary btn-sm" }) |
+    @Html.ActionLink("Lista de Equipos Inscritos", "ListaEquipos", new { id = Model.Id }, new { @type = "button", @class = "btn btn-primary btn-sm" }) |
+    @Html.ActionLink("Clasificacion De Atletas", "ClasificacionAtletas", new { id = Model.Id }, new { @type = "button", @class = "btn btn-primary btn-sm" }) |
+</p>

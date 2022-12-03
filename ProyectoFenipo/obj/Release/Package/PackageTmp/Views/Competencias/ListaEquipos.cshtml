@@ -1,0 +1,55 @@
+﻿@using ProyectoFenipo.Models
+
+@model ProyectoFenipo.Models.Competencia
+
+@{
+    ProyectoFenipoContainer db = new ProyectoFenipoContainer();
+    ViewBag.Title = "Lista De Equipos";
+    List<InscripcionEquipo> Equipos = db.InscripcionEquipos.Where(x => x.CompetenciaId == Model.Id).ToList();
+}
+
+<h2>Lista de equipos Participantes - @Model.Nombre</h2>
+
+@*@Html.ActionLink("+", "Create?id=Model.Id", "InscripcionEquipoes", null, new { @class = "btn btn-primary" })*@
+<a class="btn btn-primary" href="~/InscripcionEquipoes/Create?id=@Model.Id">+</a>
+@Html.ActionLink("Back", "Details", "Competencias",  new { id=Model.Id}, new { @class = "btn btn-dark " })
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Nombre del equipo")
+        </th>
+        <th>
+            @Html.DisplayName("Delegado de Equipo")
+        </th>
+        <th>
+            @Html.DisplayName("Nacionalidad Equipo")
+        </th>
+    </tr>
+
+    @foreach (var equipo in Equipos)
+    {
+        <tr>
+            <td>
+                @Html.DisplayName(equipo.Equipo.NombreEquipo)
+            </td>
+            <td>
+                @Html.DisplayName(equipo.DelegadoEquipo)
+            </td>
+            <td>
+                @Html.DisplayName(equipo.Equipo.NacionalidadEquipo)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", "InscripcionEquipoes", new { id = equipo.Id }, new { @class = "btn btn-secondary btn-sm" }) |
+
+                @Html.ActionLink("Detalles", "Details", "InscripcionEquipoes", new { id = equipo.Id }, new { @class = "btn btn-info btn-sm" }) |
+
+                @Html.ActionLink("Borrar", "Delete", "InscripcionEquipoes", new { id = equipo.Id }, new { @class = "btn btn-danger btn-sm" }) |
+            </td>
+
+        </tr>
+
+
+    }
+
+</table>

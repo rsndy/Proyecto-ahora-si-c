@@ -1,0 +1,91 @@
+﻿@model IEnumerable<ProyectoFenipo.Models.Competencia>
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "Index";
+    int i = 1;
+}
+
+
+@if (this.User.Identity.IsAuthenticated)
+{
+    <h2>Lista de Competencias @Html.ActionLink("+", "Create", null, new { @class = "btn btn-primary" })</h2>
+}
+
+
+<table class="table table-striped">
+
+    <tr>
+        <th>
+            <b>#</b>
+        </th>
+        <th>
+            @Html.DisplayName("Competencia")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lugar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </th>
+        <th>
+            Opciones
+        </th>
+    </tr>
+
+    @if (this.User.Identity.IsAuthenticated)
+    {
+        foreach (var item in Model)
+        {
+
+            <tr>
+                <td scope="row">
+                    <b>@i</b>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lugar)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-secondary btn-sm" }) |
+
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-sm" }) |
+
+                    @Html.ActionLink("Borrar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" }) |
+                </td>
+            </tr>
+            i++;
+        }
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+
+            <tr>
+                <td scope="row">
+                    <b>@i</b>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lugar)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-sm" })
+                </td>
+            </tr>
+            i++;
+        }
+    }
+
+</table>

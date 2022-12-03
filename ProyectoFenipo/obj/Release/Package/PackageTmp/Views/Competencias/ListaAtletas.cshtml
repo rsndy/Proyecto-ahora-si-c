@@ -1,0 +1,331 @@
+﻿
+@using ProyectoFenipo.Models
+@model ProyectoFenipo.Models.Competencia
+
+@{
+    ProyectoFenipoContainer db = new ProyectoFenipoContainer();
+    ViewBag.Title = "Lista De Atletas";
+    List<Intento> Intentos = db.Intentos.Where(x => x.InscripcionAtletas.CompetenciaId == Model.Id).ToList();
+
+
+}
+
+
+<h2>Lista de Atletas Participantes - @Model.Nombre</h2>
+
+@*@Html.ActionLink("+", "Create", "InscripcionAtletas/Create?id="+ Model.Id.ToString(), new { id = Model.Id }, new { @class = "btn btn-primary" })*@
+<a class="btn btn-primary" href="~/InscripcionAtletas/Create?id=@Model.Id">+</a>
+@Html.ActionLink("Back", "Details", "Competencias", new { id = Model.Id }, new { @class = "btn btn-dark " })
+
+<h2>Lista de Atletas Masculinos</h2>
+
+<table class="table">
+    @if (db.InscripcionAtletasSet.Where(x => x.CompetenciaId == Model.Id && x.CategoriaPeso.Genero == "Masculino").Count() != 0)
+    {
+        <tr>
+            
+            <th>
+                @Html.DisplayName("Nombre")
+            </th>
+            <th>
+                @Html.DisplayName("PC")
+            </th>
+            <th>
+                @Html.DisplayName("Team")
+            </th>
+            <th>
+                @Html.DisplayName("Cat")
+            </th>
+            <th>
+                @Html.DisplayName("S1")
+            </th>
+            <th>
+                @Html.DisplayName("S2")
+            </th>
+            <th>
+                @Html.DisplayName("S3")
+            </th>
+            <th>
+                @Html.DisplayName("PB1")
+            </th>
+            <th>
+                @Html.DisplayName("PB2")
+            </th>
+            <th>
+                @Html.DisplayName("PB3")
+            </th>
+            <th>
+                @Html.DisplayName("PM1")
+            </th>
+            <th>
+                @Html.DisplayName("PM2")
+            </th>
+            <th>
+                @Html.DisplayName("PM3")
+            </th>
+            <th>
+                @Html.DisplayName("Total")
+            </th>
+            <th>
+                @Html.DisplayName("Glpoint")
+            </th>
+            <th>
+                @Html.DisplayName("Controles")
+            </th>
+        </tr>
+        foreach (var atleta in db.InscripcionAtletasSet.Where(x => x.CategoriaPeso.Genero== "Masculino" && x.CompetenciaId == Model.Id))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayName(atleta.Atleta.NombreAtleta.ToString())
+                </td>
+                <td>
+                    @Html.DisplayName((atleta.PesoCorporal).ToString())
+                </td>
+                <td>
+                    @Html.DisplayName((atleta.InscripcionEquipo.Equipo.NombreEquipo).ToString())
+                </td>
+
+                <td>
+                    @Html.DisplayName((atleta.CategoriaPeso.NombreCategoriaPeso).ToString())
+                </td>
+
+                @foreach (var intento in Intentos.Where(x => x.InscripcionAtletasId == atleta.Id))
+                {
+                    string Color;
+                    if (intento.StatusMovimiento.Status == "Valido")
+                    {
+                        Color = "Green";
+                    }
+                    else if (intento.StatusMovimiento.Status == "Nulo")
+                    { Color = "Red"; }
+                    else
+                    { Color = "Blue"; };
+
+
+                    if (intento.Movimiento1.Nombre == "Sentadilla" && intento.NumeroIntento1.Numero == "Primer Intento")
+                    {
+
+                        <td><Font color="@Color">@Html.DisplayName(intento.KilosMovimiento.ToString()) </Font></td>
+                    }
+                    if (intento.Movimiento1.Nombre == "Sentadilla" && intento.NumeroIntento1.Numero == "Segundo Intento")
+                    {
+
+                        <td><Font color="@Color">@Html.DisplayName(intento.KilosMovimiento.ToString()) </Font></td>
+                    }
+                    if (intento.Movimiento1.Nombre == "Sentadilla" && intento.NumeroIntento1.Numero == "Tercer Intento")
+                    {
+
+                        <td><Font color="@Color">@Html.DisplayName(intento.KilosMovimiento.ToString()) </Font></td>
+                    }
+                    if (intento.Movimiento1.Nombre == "Press de Banca" && intento.NumeroIntento1.Numero == "Primer Intento")
+                    {
+
+                        <td><Font color="@Color">@Html.DisplayName(intento.KilosMovimiento.ToString()) </Font></td>
+                    }
+                    if (intento.Movimiento1.Nombre == "Press de Banca" && intento.NumeroIntento1.Numero == "Segundo Intento")
+                    {
+
+                        <td><Font color="@Color">@Html.DisplayName(intento.KilosMovimiento.ToString()) </Font></td>
+                    }
+                    if (intento.Movimiento1.Nombre == "Press de Banca" && intento.NumeroIntento1.Numero == "Tercer Intento")
+                    {
+
+                        <td><Font color="@Color">@Html.DisplayName(intento.KilosMovimiento.ToString()) </Font></td>
+                    }
+                    if (intento.Movimiento1.Nombre == "Peso Muerto" && intento.NumeroIntento1.Numero == "Primer Intento")
+                    {
+
+                        <td><Font color="@Color">@Html.DisplayName(intento.KilosMovimiento.ToString()) </Font></td>
+                    }
+                    if (intento.Movimiento1.Nombre == "Peso Muerto" && intento.NumeroIntento1.Numero == "Segundo Intento")
+                    {
+
+                        <td><Font color="@Color">@Html.DisplayName(intento.KilosMovimiento.ToString()) </Font></td>
+                    }
+                    if (intento.Movimiento1.Nombre == "Peso Muerto" && intento.NumeroIntento1.Numero == "Tercer Intento")
+                    {
+
+                        <td><Font color="@Color">@Html.DisplayName(intento.KilosMovimiento.ToString()) </Font></td>
+                    }
+
+                }
+                <td>
+                    @Html.DisplayName((atleta.Total).ToString())
+                </td>
+                <td>
+                    @Html.DisplayName(((int)atleta.GLPoint).ToString())
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", "InscripcionAtletas", new { id = atleta.Id }, new { @class = "btn btn-secondary btn-sm" }) |
+
+                    @Html.ActionLink("Detalles", "Details", "InscripcionAtletas", new { id = atleta.Id }, new { @class = "btn btn-info btn-sm" }) |
+
+                    @Html.ActionLink("Borrar", "Delete", "InscripcionAtletas", new { id = atleta.Id }, new { @class = "btn btn-danger btn-sm" }) |
+                </td>
+
+
+
+            </tr>
+        }
+    }
+
+
+
+</table>
+
+<h2>Lista de Atletas Femeninas</h2>
+
+<table class="table">
+    @if (db.InscripcionAtletasSet.Where(x => x.CompetenciaId == Model.Id && x.CategoriaPeso.Genero == "Femenino").Count() != 0)
+    {
+        <tr>
+            <th>
+                @Html.DisplayName("Nombre")
+            </th>
+            <th>
+                @Html.DisplayName("PC")
+            </th>
+            <th>
+                @Html.DisplayName("Team")
+            </th>
+            <th>
+                @Html.DisplayName("Cat")
+            </th>
+            <th>
+                @Html.DisplayName("S1")
+            </th>
+            <th>
+                @Html.DisplayName("S2")
+            </th>
+            <th>
+                @Html.DisplayName("S3")
+            </th>
+            <th>
+                @Html.DisplayName("PB1")
+            </th>
+            <th>
+                @Html.DisplayName("PB2")
+            </th>
+            <th>
+                @Html.DisplayName("PB3")
+            </th>
+            <th>
+                @Html.DisplayName("PM1")
+            </th>
+            <th>
+                @Html.DisplayName("PM2")
+            </th>
+            <th>
+                @Html.DisplayName("PM3")
+            </th>
+            <th>
+                @Html.DisplayName("Total")
+            </th>
+            <th>
+                @Html.DisplayName("Glpoint")
+            </th>
+            <th>
+                @Html.DisplayName("Controles")
+            </th>
+        </tr>
+        foreach (var atleta in db.InscripcionAtletasSet.Where(x => x.CategoriaPeso.Genero == "Femenino" && x.CompetenciaId == Model.Id))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayName(atleta.Atleta.NombreAtleta.ToString())
+                </td>
+                <td>
+                    @Html.DisplayName((atleta.PesoCorporal).ToString())
+                </td>
+                <td>
+                    @Html.DisplayName((atleta.InscripcionEquipo.Equipo.NombreEquipo).ToString())
+                </td>
+
+                <td>
+                    @Html.DisplayName((atleta.CategoriaPeso.NombreCategoriaPeso).ToString())
+                </td>
+
+                @foreach (var intento in Intentos.Where(x => x.InscripcionAtletasId == atleta.Id))
+                {
+                    string Color;
+                    if (intento.StatusMovimiento.Status == "Valido")
+                    {
+                        Color = "Green";
+                    }
+                    else if (intento.StatusMovimiento.Status == "Nulo")
+                    { Color = "Red"; }
+                    else
+                    { Color = "Blue"; };
+
+
+                    if (intento.Movimiento1.Nombre == "Sentadilla" && intento.NumeroIntento1.Numero == "Primer Intento")
+                    {
+
+                        <td><Font color="@Color">@Html.DisplayName(intento.KilosMovimiento.ToString()) </Font></td>
+                    }
+                    if (intento.Movimiento1.Nombre == "Sentadilla" && intento.NumeroIntento1.Numero == "Segundo Intento")
+                    {
+
+                        <td><Font color="@Color">@Html.DisplayName(intento.KilosMovimiento.ToString()) </Font></td>
+                    }
+                    if (intento.Movimiento1.Nombre == "Sentadilla" && intento.NumeroIntento1.Numero == "Tercer Intento")
+                    {
+
+                        <td><Font color="@Color">@Html.DisplayName(intento.KilosMovimiento.ToString()) </Font></td>
+                    }
+                    if (intento.Movimiento1.Nombre == "Press de Banca" && intento.NumeroIntento1.Numero == "Primer Intento")
+                    {
+
+                        <td><Font color="@Color">@Html.DisplayName(intento.KilosMovimiento.ToString()) </Font></td>
+                    }
+                    if (intento.Movimiento1.Nombre == "Press de Banca" && intento.NumeroIntento1.Numero == "Segundo Intento")
+                    {
+
+                        <td><Font color="@Color">@Html.DisplayName(intento.KilosMovimiento.ToString()) </Font></td>
+                    }
+                    if (intento.Movimiento1.Nombre == "Press de Banca" && intento.NumeroIntento1.Numero == "Tercer Intento")
+                    {
+
+                        <td><Font color="@Color">@Html.DisplayName(intento.KilosMovimiento.ToString()) </Font></td>
+                    }
+                    if (intento.Movimiento1.Nombre == "Peso Muerto" && intento.NumeroIntento1.Numero == "Primer Intento")
+                    {
+
+                        <td><Font color="@Color">@Html.DisplayName(intento.KilosMovimiento.ToString()) </Font></td>
+                    }
+                    if (intento.Movimiento1.Nombre == "Peso Muerto" && intento.NumeroIntento1.Numero == "Segundo Intento")
+                    {
+
+                        <td><Font color="@Color">@Html.DisplayName(intento.KilosMovimiento.ToString()) </Font></td>
+                    }
+                    if (intento.Movimiento1.Nombre == "Peso Muerto" && intento.NumeroIntento1.Numero == "Tercer Intento")
+                    {
+
+                        <td><Font color="@Color">@Html.DisplayName(intento.KilosMovimiento.ToString()) </Font></td>
+                    }
+
+                }
+                <td>
+                    @Html.DisplayName((atleta.Total).ToString())
+                </td>
+                <td>
+                    @Html.DisplayName(((int)atleta.GLPoint).ToString())
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", "InscripcionAtletas", new { id = atleta.Id }, new { @class = "btn btn-secondary btn-sm" }) |
+
+                    @Html.ActionLink("Detalles", "Details", "InscripcionAtletas", new { id = atleta.Id }, new { @class = "btn btn-info btn-sm" }) |
+
+                    @Html.ActionLink("Borrar", "Delete", "InscripcionAtletas", new { id = atleta.Id }, new { @class = "btn btn-danger btn-sm" }) |
+                </td>
+
+
+
+            </tr>
+        }
+    }
+
+
+
+</table>

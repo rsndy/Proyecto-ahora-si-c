@@ -245,6 +245,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="ProyectoFenipoServiceWeb.asmx.cs">
+      <DependentUpon>ProyectoFenipoServiceWeb.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Controllers\StatusMovimientoesController.cs" />
   </ItemGroup>
@@ -282,10 +286,12 @@
     <Content Include="Models\ProyectoFenipo.edmx.diagram">
       <DependentUpon>ProyectoFenipo.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\ProyectoFenipo - Web Deploy.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="ProyectoFenipoServiceWeb.asmx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

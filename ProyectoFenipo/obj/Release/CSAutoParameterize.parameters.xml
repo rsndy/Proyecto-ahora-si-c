@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="data source=ProyectoFenipoDB.mssql.somee.com;initial catalog=ProyectoFenipoDB;user id=ProyectoFenipo_SQLLogin_1;pwd=bxyqlobfrr;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\FRANCISCO\\Documents\\proyecto\ final\\Proyecto-ahora-si-c\\ProyectoFenipo\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="ProyectoFenipoContainer-Web.config Connection String" description="ProyectoFenipoContainer Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="metadata=res://*/Models.ProyectoFenipo.csdl|res://*/Models.ProyectoFenipo.ssdl|res://*/Models.ProyectoFenipo.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=ProyectoFenipoDB.mssql.somee.com;initial catalog=ProyectoFenipoDB;persist security info=True;user id=ProyectoFenipo_SQLLogin_1;password=bxyqlobfrr;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\FRANCISCO\\Documents\\proyecto\ final\\Proyecto-ahora-si-c\\ProyectoFenipo\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ProyectoFenipoContainer']/@connectionString" />
+  </parameter>
+</parameters>

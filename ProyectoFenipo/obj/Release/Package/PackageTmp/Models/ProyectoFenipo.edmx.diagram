@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="09e6bdca9e2d4c2f90b3bb38c311acd3" Name="Diagram1" DisplayType="true" ZoomLevel="95" >
+        <EntityTypeShape EntityType="ProyectoFenipo.Atleta" Width="2.5" PointX="0.75" PointY="3.5" />
+        <EntityTypeShape EntityType="ProyectoFenipo.Equipo" Width="2.5" PointX="11.25" PointY="3.25" />
+        <EntityTypeShape EntityType="ProyectoFenipo.Competencia" Width="2.375" PointX="6.625" PointY="9.875" />
+        <EntityTypeShape EntityType="ProyectoFenipo.InscripcionEquipo" Width="2.5" PointX="9.5" PointY="5.375" />
+        <EntityTypeShape EntityType="ProyectoFenipo.InscripcionAtletas" Width="2.125" PointX="5.75" PointY="5.125" />
+        <EntityTypeShape EntityType="ProyectoFenipo.CategoriaPeso" Width="1.5" PointX="3.75" PointY="3.5" />
+        <EntityTypeShape EntityType="ProyectoFenipo.CategoriaEdad" PointX="8" PointY="2.875" Width="2.25" />
+        <EntityTypeShape EntityType="ProyectoFenipo.Intento" PointX="8.625" PointY="12.75" Width="2.125" />
+        <AssociationConnector Association="ProyectoFenipo.AtletaInscripcionAtletas" />
+        <AssociationConnector Association="ProyectoFenipo.InscripcionAtletasIntento" />
+        <AssociationConnector Association="ProyectoFenipo.EquipoInscripcionEquipo" />
+        <AssociationConnector Association="ProyectoFenipo.InscripcionAtletasInscripcionEquipo" />
+        <AssociationConnector Association="ProyectoFenipo.CompetenciaInscripcionEquipo" />
+        <AssociationConnector Association="ProyectoFenipo.CompetenciaInscripcionAtletas" />
+        <AssociationConnector Association="ProyectoFenipo.InscripcionAtletasCategoriaEdad" />
+        <AssociationConnector Association="ProyectoFenipo.InscripcionAtletasCategoriaPeso" />
+        <EntityTypeShape EntityType="ProyectoFenipo.NumeroIntento" PointX="3.375" PointY="0.875" Width="1.5" />
+        <EntityTypeShape EntityType="ProyectoFenipo.Movimiento" PointX="11.5" PointY="13.375" Width="1.5" />
+        <EntityTypeShape EntityType="ProyectoFenipo.StatusMovimiento" PointX="0.75" PointY="0.75" Width="1.5" />
+        <AssociationConnector Association="ProyectoFenipo.IntentoMovimiento" />
+        <AssociationConnector Association="ProyectoFenipo.NumeroIntentoIntento" />
+        <AssociationConnector Association="ProyectoFenipo.IntentoStatusMovimiento" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
