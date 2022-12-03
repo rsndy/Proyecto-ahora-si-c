@@ -10,17 +10,18 @@ using ProyectoFenipo.Models;
 
 namespace ProyectoFenipo.Controllers
 {
+    [Authorize]
     public class CompetenciasController : Controller
     {
         private ProyectoFenipoContainer db = new ProyectoFenipoContainer();
-
+        [AllowAnonymous]
         // GET: Competencias
         public ActionResult Index()
         {
             return View(db.Competencias.ToList());
         }
         //Vista de usuario publico 
-
+        [AllowAnonymous]
         public ActionResult ListaAtletas(int? id)
         {
             if (id == null)
@@ -51,9 +52,7 @@ namespace ProyectoFenipo.Controllers
 
             return View(competencia) ; 
         }
-
-        
-
+        [AllowAnonymous]
         public ActionResult ListaEquipos(int? id)
         {
             if (id == null)
@@ -68,6 +67,7 @@ namespace ProyectoFenipo.Controllers
             }
             return View(competencia);
         }
+        [AllowAnonymous]
         // GET: Competencias/Details/5
         public ActionResult Details(int? id)
         {
@@ -136,7 +136,6 @@ namespace ProyectoFenipo.Controllers
             }
             return View(competencia);
         }
-
         // GET: Competencias/Delete/5
         public ActionResult Delete(int? id)
         {

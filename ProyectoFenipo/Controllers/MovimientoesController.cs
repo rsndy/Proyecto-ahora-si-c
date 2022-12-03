@@ -10,6 +10,7 @@ using ProyectoFenipo.Models;
 
 namespace ProyectoFenipo.Controllers
 {
+    [Authorize]
     public class MovimientoesController : Controller
     {
         private ProyectoFenipoContainer db = new ProyectoFenipoContainer();
@@ -103,7 +104,6 @@ namespace ProyectoFenipo.Controllers
             }
             return View(movimiento);
         }
-
         // POST: Movimientoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -114,7 +114,6 @@ namespace ProyectoFenipo.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -1,30 +1,35 @@
 ﻿@model IEnumerable<ProyectoFenipo.Models.Atleta>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Listado de Atletas";
 }
 
-<h2>Index</h2>
+@if (this.User.Identity.IsAuthenticated)
+{
+    <h2>@ViewBag.Title @Html.ActionLink("+", "Create", null, new { @class = "btn btn-primary" })</h2>
+}
+else
+{ 
+    <h2>@ViewBag.Title</h2>
+}
 
-<p>
-    @Html.ActionLink("+", "Create" ,null , new { @class = "btn btn-primary btn-sm" })
-</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreAtleta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaNacimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sexo)
+        </th>
+        <th></th>
+    </tr>
 
-    <table class="table table-striped" >
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NombreAtleta)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaNacimiento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Sexo)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
+    @if (this.User.Identity.IsAuthenticated)
+    {
+        foreach (var item in Model)
         {
             <tr>
                 <td>
@@ -37,12 +42,34 @@
                     @Html.DisplayFor(modelItem => item.Sexo)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id } , new { @class = "btn btn-secondary btn-sm" }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id } , new { @class = "btn btn-info btn-sm" }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id } , new { @class = "btn btn-danger btn-sm" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-secondary btn-sm" }) |
+
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-sm" }) |
+
+                    @Html.ActionLink("Borrar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" }) |
                 </td>
             </tr>
         }
-
-    </table>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreAtleta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaNacimiento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sexo)
+                </td>
+                <td>
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-sm" })
+                </td>
+            </tr>
+        }
+    }
+</table>
 

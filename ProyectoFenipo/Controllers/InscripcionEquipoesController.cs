@@ -10,6 +10,7 @@ using ProyectoFenipo.Models;
 
 namespace ProyectoFenipo.Controllers
 {
+    [Authorize]
     public class InscripcionEquipoesController : Controller
     {
         private ProyectoFenipoContainer db = new ProyectoFenipoContainer();
@@ -111,7 +112,6 @@ namespace ProyectoFenipo.Controllers
             ViewBag.CompetenciaId = new SelectList(db.Competencias, "Id", "Nombre", inscripcionEquipo.CompetenciaId);
             return View(inscripcionEquipo);
         }
-
         // GET: InscripcionEquipoes/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -126,7 +126,6 @@ namespace ProyectoFenipo.Controllers
             }
             return View(inscripcionEquipo);
         }
-
         // POST: InscripcionEquipoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

@@ -10,6 +10,7 @@ using ProyectoFenipo.Models;
 
 namespace ProyectoFenipo.Views
 {
+    [Authorize]
     public class StatusMovimientoesController : Controller
     {
         private ProyectoFenipoContainer db = new ProyectoFenipoContainer();
@@ -88,7 +89,6 @@ namespace ProyectoFenipo.Views
             }
             return View(statusMovimiento);
         }
-
         // GET: StatusMovimientoes/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -103,7 +103,6 @@ namespace ProyectoFenipo.Views
             }
             return View(statusMovimiento);
         }
-
         // POST: StatusMovimientoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

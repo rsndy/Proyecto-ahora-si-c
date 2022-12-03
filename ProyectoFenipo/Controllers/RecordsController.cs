@@ -6,29 +6,29 @@ using System.Web.Mvc;
 
 namespace ProyectoFenipo.Controllers
 {
+    [Authorize]
     public class RecordsController : Controller
     {
-        
+        [AllowAnonymous]
         // GET: Records
         public ActionResult RecordsSentadilla()
         {
 
             return View();
         }
-
+        [AllowAnonymous]
         public ActionResult RecordsPressBanca()
         {
 
             return View();
         }
-
+        [AllowAnonymous]
         public ActionResult RecordsPesoMuerto()
         {
 
             return View();
         }
-
-
+        [AllowAnonymous]
         // GET: Records/Details/5
         public ActionResult Details(int id)
         {
@@ -78,13 +78,11 @@ namespace ProyectoFenipo.Controllers
                 return View();
             }
         }
-
         // GET: Records/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
-
         // POST: Records/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)

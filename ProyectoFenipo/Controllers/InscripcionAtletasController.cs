@@ -12,6 +12,7 @@ using ProyectoFenipo.Controllers;
 
 namespace ProyectoFenipo.Controllers
 {
+    [Authorize]
     public class InscripcionAtletasController : Controller
     {
         private ProyectoFenipoContainer db = new ProyectoFenipoContainer();
@@ -208,7 +209,6 @@ namespace ProyectoFenipo.Controllers
             return RedirectToAction("Details/"+inscripcionAtletas.Id , "InscripcionAtletas");
            
         }
-
         // GET: InscripcionAtletas/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -224,7 +224,6 @@ namespace ProyectoFenipo.Controllers
             }
             return View(inscripcionAtletas);
         }
-
         // POST: InscripcionAtletas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

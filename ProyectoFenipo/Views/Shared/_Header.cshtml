@@ -1,0 +1,25 @@
+﻿<!-- Responsive navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+    <div class="container">
+        @Html.ActionLink("PROYECTO FENIPO", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <!-- MenuButtons -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href=@Url.Action("Index", "Competencias", new { id = UrlParameter.Optional })>COMPETENCIAS</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href=@Url.Action("Index", "Atletas", new { id = UrlParameter.Optional })>ATLETAS</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">RECORDS</a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href=@Url.Action("RecordsPesoMuerto", "Records", new { id = UrlParameter.Optional })>Peso Muerto</a></li>
+                        <li><a class="dropdown-item" href=@Url.Action("RecordsPressBanca", "Records", new { id = UrlParameter.Optional })>Press Banca</a></li>
+                        <li><a class="dropdown-item" href=@Url.Action("RecordsSentadilla", "Records", new { id = UrlParameter.Optional })>Sentadillas</a></li>
+                    </ul>
+                </li>                    
+            </ul>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                @Html.Partial("_LoginPartial")
+            </ul>
+        </div>
+    </div>
+</nav>

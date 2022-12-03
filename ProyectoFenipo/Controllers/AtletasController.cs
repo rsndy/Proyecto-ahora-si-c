@@ -10,16 +10,17 @@ using ProyectoFenipo.Models;
 
 namespace ProyectoFenipo.Controllers
 {
+    [Authorize]
     public class AtletasController : Controller
     {
         private ProyectoFenipoContainer db = new ProyectoFenipoContainer();
-
+        [AllowAnonymous]
         // GET: Atletas
         public ActionResult Index()
         {
             return View(db.Atletas.ToList());
         }
-
+        [AllowAnonymous]
         // GET: Atletas/Details/5
         public ActionResult Details(int? id)
         {
@@ -33,8 +34,7 @@ namespace ProyectoFenipo.Controllers
                 return HttpNotFound();
             }
             return View(atleta);
-        }
-
+        }        
         // GET: Atletas/Create
         public ActionResult Create()
         {
@@ -88,7 +88,6 @@ namespace ProyectoFenipo.Controllers
             }
             return View(atleta);
         }
-
         // GET: Atletas/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -103,7 +102,6 @@ namespace ProyectoFenipo.Controllers
             }
             return View(atleta);
         }
-
         // POST: Atletas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

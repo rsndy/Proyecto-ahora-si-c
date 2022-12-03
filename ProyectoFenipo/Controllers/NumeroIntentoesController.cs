@@ -10,6 +10,7 @@ using ProyectoFenipo.Models;
 
 namespace ProyectoFenipo.Controllers
 {
+    [Authorize]
     public class NumeroIntentoesController : Controller
     {
         private ProyectoFenipoContainer db = new ProyectoFenipoContainer();
@@ -88,7 +89,6 @@ namespace ProyectoFenipo.Controllers
             }
             return View(numeroIntento);
         }
-
         // GET: NumeroIntentoes/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -103,7 +103,6 @@ namespace ProyectoFenipo.Controllers
             }
             return View(numeroIntento);
         }
-
         // POST: NumeroIntentoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
